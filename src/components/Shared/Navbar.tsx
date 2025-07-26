@@ -1,4 +1,7 @@
+"use client"
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
+
 import React from "react";
 import { Switch } from "@/components/ui/switch";
 import { IoMenuSharp } from "react-icons/io5";
@@ -14,6 +17,7 @@ import {
 import { Button } from "../ui/button";
 
 const Navbar = () => {
+    const pathname = usePathname()
   return (
     <header className="py-4 shadow-md">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -27,26 +31,26 @@ const Navbar = () => {
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             <NavigationMenuItem className="flex items-center space-x-8">
-              <NavigationMenuLink href="/news" className="hover:text-green-500">
+              <NavigationMenuLink href="/news" className={`${pathname === '/news' ? 'text-green-500 font-semibold': ''}hover:text-red-500`}>
                 News
               </NavigationMenuLink>
 
               <NavigationMenuLink
                 href="/services"
-                className="hover:text-green-500"
+                className={`${pathname === '/services' ? 'text-green-500 font-semibold': ''}hover:text-red-500`}
               >
                 Services
               </NavigationMenuLink>
 
               <NavigationMenuLink
                 href="/about"
-                className="hover:text-green-500"
+                className={`${pathname === '/about' ? 'text-green-500 font-semibold': ''}hover:text-red-500`}
               >
                 About
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/contact "
-                className="hover:text-green-500"
+                className={`${pathname === '/contact' ? 'text-green-500 font-semibold': ''}hover:text-red-500`}
               >
                 Contact
               </NavigationMenuLink>
