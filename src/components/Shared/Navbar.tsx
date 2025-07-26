@@ -1,10 +1,11 @@
 "use client"
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
-
+import { usePathname } from 'next/navigation';
 import React from "react";
 import { Switch } from "@/components/ui/switch";
 import { IoMenuSharp } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
+import { useState } from "react";
 
 import {
   NavigationMenu,
@@ -17,8 +18,13 @@ import {
 import { Button } from "../ui/button";
 
 const Navbar = () => {
-    const pathname = usePathname()
+    const pathname = usePathname();
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const toggleMenu = ()=>{
+        setIsMenuOpen(!isMenuOpen)
+    }
   return (
+
     <header className="py-4 shadow-md">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <div className="text-xl font-bold">
@@ -28,7 +34,7 @@ const Navbar = () => {
         </div>
         {/* desktop-menu */}
 
-        <NavigationMenu className="hidden md:flex">
+        <NavigationMenu className="hidden sm:flex">
           <NavigationMenuList>
             <NavigationMenuItem className="flex items-center space-x-8">
               <NavigationMenuLink href="/news" className={`${pathname === '/news' ? 'text-green-500 font-semibold': ''}hover:text-red-500`}>
@@ -59,7 +65,7 @@ const Navbar = () => {
         </NavigationMenu>
 
         {/* color switcher and login button */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden sm:flex items-center space-x-4">
           <div className="flex items-center">
             <Switch className="mr-2" />
             <span className="mr-3">Dark Mode</span>
@@ -70,8 +76,13 @@ const Navbar = () => {
 
         {/* for mobile menu */}
 
-        <div className="md:hidden">
-            <Button variant="outline"><IoMenuSharp size={24}/></Button>
+        <div className="sm:hidden">
+            <Button onClick= {toggleMenu} variant="outline">
+            {
+                isMenuOpen ? <IoMdClose size={24}/> : <IoMenuSharp size={24}/>
+
+            }
+            </Button>
         
 
         </div>
