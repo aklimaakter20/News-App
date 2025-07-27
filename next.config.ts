@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ['cdn.dummyjson.com'], // dummyjson image গুলো এই domain থেকে আসে
+  },
 };
 
 export default nextConfig;
